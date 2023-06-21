@@ -20,30 +20,30 @@ function Login() {
             token: ''
         })
 
-        function updatedModel(e: ChangeEvent<HTMLInputElement>) {
+    function updatedModel(e: ChangeEvent<HTMLInputElement>) {
 
-            setUserLogin({
-                ...userLogin,
-                [e.target.name]: e.target.value
-            })
-            // console.log(JSON.stringify(userLogin))
+        setUserLogin({
+            ...userLogin,
+            [e.target.name]: e.target.value
+        })
+        console.log(JSON.stringify(userLogin))
+    }
+
+    useEffect(() => {
+        if (token != '') {
+            navigate('/home')
         }
+    }, [token])
 
-            useEffect(()=>{
-                if(token != ''){
-                    navigate('/home')
-                }
-            }, [token])
-
-        async function onSubmit(e: ChangeEvent<HTMLFormElement>){
-            e.preventDefault();
-            try{
-                await login(`usuarios/logar`, userLogin, setToken)
-                alert('Usuário logado com sucesso!');
-            }catch(error){
-                alert('Dados do usuário inconsistentes. Erro ao logar!');
-            }
+    async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
+        e.preventDefault();
+        try {
+            await login(`usuarios/logar`, userLogin, setToken)
+            alert('Usuário logado com sucesso!');
+        } catch (error) {
+            alert('Dados do usuário inconsistentes. Erro ao logar!');
         }
+    }
 
     return (
         <Grid container direction='row' justifyContent='center' alignItems='center'>
@@ -55,11 +55,9 @@ function Login() {
                         <TextField id='senha' label='Senha' variant='outlined' name='senha' margin='normal' type='password' fullWidth />
 
                         <Box marginTop={2} textAlign='center'>
-                            <Link to='/home' className='text-decorator-none'>
-                                <Button type='submit' variant='contained' color='primary'>
-                                    ENTRAR
-                                </Button>
-                            </Link>
+                            <Button type='submit' variant='contained' color='primary'>
+                                ENTRAR
+                            </Button>
                         </Box>
                     </form>
 

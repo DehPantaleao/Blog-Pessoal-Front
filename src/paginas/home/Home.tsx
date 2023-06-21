@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography, Grid, Button, Box } from '@material-ui/core';
+import TabPostagem from '../../components/postagens/tabpostagem/TabPostagem';
 import './Home.css';
 
 function Home() {
@@ -22,6 +23,7 @@ function Home() {
                     <img src="https://www.hostinger.com.br/tutoriais/wp-content/uploads/sites/12/2019/04/25-Ideias-Para-Blog-para-Ter-Um-Blog-de-Sucesso.png" alt="Foto de uma biblioteca com as luzes acesas" width="500px" height="500px" /> 
                 </Grid>
                 <Grid xs={12} className='postagens'>
+                    <TabPostagem />
                 </Grid>
             </Grid>
         </>
