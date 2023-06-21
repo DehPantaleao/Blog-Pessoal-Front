@@ -2,8 +2,8 @@ import React from 'react';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import {Typography, Grid } from '@material-ui/core';
-import {Box} from '@mui/material';
+import { Typography, Grid } from '@material-ui/core';
+import { Box } from '@mui/material';
 
 function Footer() {
     return (
@@ -30,9 +30,9 @@ function Footer() {
                         <Box paddingTop={1}>
                             <Typography variant="subtitle2" align="center" gutterBottom style={{ color: "white" }} >© 2023 Copyright:</Typography>
                         </Box>
-                        <Box>
+                        <Box >
                             <a target="_blank" href='https://www.linkedin.com/in/deborahpantaleao/'>
-                                <Typography variant="subtitle2" gutterBottom style={{ color: "white" }} align="center">Deborah Pantaleão </Typography> 
+                                <Typography variant="subtitle2" gutterBottom style={{ color: "white" }} align="center" >Deborah Pantaleão </Typography> 
                             </a>
                         </Box>
                     </Box>

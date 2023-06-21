@@ -1,0 +1,16 @@
+.imagem2{
+    background-image: url(https://st3.depositphotos.com/1350793/14327/i/450/depositphotos_143274417-stock-photo-blog-text-with-hands.jpg);
+    background-repeat: no-repeat;
+    width: 100vh;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.textos2{
+    font-weight: bold !important;
+}
+
+.btnCancelar{
+    margin-right: 20px !important;
+}

@@ -1,16 +1,56 @@
-import React from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import { Grid, Typography, TextField, Button } from '@material-ui/core';
 import { Box } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { login } from '../../services/Service';
+import UserLogin from '../../models/UserLogin'
+import useLocalStorage from 'react-use-localstorage';
 import './Login.css';
 
 function Login() {
+
+    let navigate = useNavigate();
+
+    const [token, setToken] = useLocalStorage('token')
+    const [userLogin, setUserLogin] = useState<UserLogin>(
+        {
+            id: 0,
+            usuario: '',
+            senha: '',
+            token: ''
+        })
+
+        function updatedModel(e: ChangeEvent<HTMLInputElement>) {
+
+            setUserLogin({
+                ...userLogin,
+                [e.target.name]: e.target.value
+            })
+            // console.log(JSON.stringify(userLogin))
+        }
+
+            useEffect(()=>{
+                if(token != ''){
+                    navigate('/home')
+                }
+            }, [token])
+
+        async function onSubmit(e: ChangeEvent<HTMLFormElement>){
+            e.preventDefault();
+            try{
+                await login(`usuarios/logar`, userLogin, setToken)
+                alert('Usuário logado com sucesso!');
+            }catch(error){
+                alert('Dados do usuário inconsistentes. Erro ao logar!');
+            }
+        }
+
     return (
         <Grid container direction='row' justifyContent='center' alignItems='center'>
             <Grid alignItems='center' xs={6}>
                 <Box paddingX={20}>
-                    <form>
-                        <Typography variant='h3' gutterBottom color='textPrimary' component='h3' align='center' style={{fontWeight: 'bold'}}>Bem Vindo!</Typography>
+                    <form onSubmit={onSubmit}>
+                        <Typography variant='h3' gutterBottom color='textPrimary' component='h3' align='center' style={{ fontWeight: 'bold' }}>Bem Vindo!</Typography>
                         <TextField id='usuario' label='Usuário' variant='outlined' name='usuario' margin='normal' fullWidth />
                         <TextField id='senha' label='Senha' variant='outlined' name='senha' margin='normal' type='password' fullWidth />
 
@@ -28,7 +68,9 @@ function Login() {
                             {/*gutterBottom é a margem que fica abaixo*/}
                             <Typography variant='subtitle1' gutterBottom align='center'>Ainda não tem conta?</Typography>
                         </Box>
-                        <Typography variant='subtitle1' gutterBottom align='center' style={{fontWeight: 'bold'}}>Cadastre-se</Typography>
+                        <Link to='/cadastrousuario'>
+                            <Typography variant='subtitle1' gutterBottom align='center' className='textos1'>Cadastre-se</Typography>
+                        </Link>
                     </Box>
                 </Box>
             </Grid>
