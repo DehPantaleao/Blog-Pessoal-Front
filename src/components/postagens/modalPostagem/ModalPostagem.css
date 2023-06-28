@@ -1,0 +1,10 @@
+.cursor{
+    cursor: pointer;
+} 
+/* transforma o mouse em mãozinha */
+
+.btnModal{
+    border-color: white !important;
+    background-color: white !important;
+}
+/* da borda branca e cor de fundo branca para o botão */
